@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          Javascript typeof操作符 - Leo | Blog
+          JavaScript-typeof操作符 - Leo | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/Javascript-typeof操作符/">
+    <link rel="canonical" href="http://yoursite.com/article/JavaScript-typeof操作符/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -78,7 +78,7 @@
     
 </style>
 
-<header class="intro-header">
+<header class="intro-header" >
     <!-- Signature -->
     <div id="signature">
         <div class="container">
@@ -88,12 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                            
                         </div>
-                        <h1>Javascript typeof操作符</h1>
+                        <h1>JavaScript-typeof操作符</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Leo on
-                            2019-05-28
+                            2019-07-19
                         </span>
                     </div>
                 
@@ -210,41 +212,41 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1><span id="一-数据类型">一、数据类型</span></h1>
-<h3><span id="1前言">1.前言</span></h3>
-<p>最近会把读《<a href="https://pan.baidu.com/s/16mgvpdkiYmCROkvAVTvdRg" target="_blank" rel="noopener">Javascript高级程序设计(第三版)》</a> <code>密码:2vp3</code> 这本书的一些要点，一一分享给大家，这是第一篇基本数据类型。我已经把此书的网盘链接分享出来了，有兴趣的可以看下，JavaScript进阶必看。</p>
-<h3><span id="2类型">2.类型</span></h3>
-<p>ECMAScript有5种基本数据类型：undefined、Null、Boolean、Number、String ; 一种复杂数据类型 Object; 当然还有ES6新增数据类型 <a href="http://es6.ruanyifeng.com/#docs/symbol" target="_blank" rel="noopener">Symbol</a> ,标示独一无二的值。</p>
-<h4><span id="1typeof操作符">1).typeof操作符</span></h4>
-<p>由于下面很多例子都用到这个操作符，所以先提前讲解下，这个操作符其实就是检测数据类型的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">typeof undefined ===&gt; undefined</span><br><span class="line">typeof boolean   ===&gt; boolean</span><br><span class="line">typeof string    ===&gt; string</span><br><span class="line">typeof number    ===&gt; number</span><br><span class="line">typeof object(**null**) ===&gt; object</span><br><span class="line">typeof function ===&gt; function</span><br></pre></td></tr></table></figure>
-<h4><span id="2undefined-类型">2).undefined 类型</span></h4>
-<p>未经初始化的类型即为undefined；因此我们没有必要显示的给未初始化的变量显式的设置为undefined，因为它已经默认了，未初始化的值就会取undefined值</p>
+                <p>#一、数据类型<br>
+###1.前言<br>
+最近会把读《<a href="https://pan.baidu.com/s/16mgvpdkiYmCROkvAVTvdRg" target="_blank" rel="noopener">Javascript高级程序设计(第三版)》</a> <code>密码:2vp3</code> 这本书的一些要点，一一分享给大家，这是第一篇基本数据类型。我已经把此书的网盘链接分享出来了，有兴趣的可以看下，JavaScript进阶必看。<br>
+###2.类型<br>
+ECMAScript有5种基本数据类型：undefined、Null、Boolean、Number、String ; 一种复杂数据类型 Object; 当然还有ES6新增数据类型 <a href="http://es6.ruanyifeng.com/#docs/symbol" target="_blank" rel="noopener">Symbol</a> ,标示独一无二的值。<br>
+####1).typeof操作符<br>
+由于下面很多例子都用到这个操作符，所以先提前讲解下，这个操作符其实就是检测数据类型的。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">typeof undefined ===&gt; undefined</span><br><span class="line">typeof boolean   ===&gt; boolean</span><br><span class="line">typeof string    ===&gt; string</span><br><span class="line">typeof number    ===&gt; number</span><br><span class="line">typeof object(**null**) ===&gt; object</span><br><span class="line">typeof function ===&gt; function</span><br></pre></td></tr></table></figure>
+<p>####2).undefined 类型<br>
+未经初始化的类型即为undefined；因此我们没有必要显示的给未初始化的变量显式的设置为undefined，因为它已经默认了，未初始化的值就会取undefined值</p>
 <p><code>var data; alert(data == undefined)//true</code></p>
 <p>这地方有一个需要大家注意的地方，未声明的变量和未初始化的变量在使用<code>typeof</code>操作符的时候都会返回<code>undefined</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//这个变量声明但为初始化 默认值：undefined</span><br><span class="line">var message;</span><br><span class="line"></span><br><span class="line">console.log(typeof message);//undefined</span><br><span class="line">console.log(typeof a);//a 为声明</span><br></pre></td></tr></table></figure>
-<p>虽然未初始化的变量会默认设置为undefined，但是我们显式的初始化变量时设置undefined也是很明智的选择，因为这样我们可以通过typeof操作符返回undefined时，来检测变量是还没声明，而不是尚未初始化。</p>
-<h4><span id="3null类型">3).Null类型</span></h4>
-<p>Null类型只有一个值就是null,它指向一个空指针对象，所以用<code>typeof</code>操作符检测的时候，返回Object。当我我们定义一个变量用来保存对象的时候，我们最好把这个变量初始化为null,这样一来我们只需要检测null值就可以知道相应的变量是否已经保存了一个对象的引用。</p>
+<p>虽然未初始化的变量会默认设置为undefined，但是我们显式的初始化变量时设置undefined也是很明智的选择，因为这样我们可以通过typeof操作符返回undefined时，来检测变量是还没声明，而不是尚未初始化。<br>
+####3).Null类型<br>
+Null类型只有一个值就是null,它指向一个空指针对象，所以用<code>typeof</code>操作符检测的时候，返回Object。当我我们定义一个变量用来保存对象的时候，我们最好把这个变量初始化为null,这样一来我们只需要检测null值就可以知道相应的变量是否已经保存了一个对象的引用。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var o = null;</span><br><span class="line">if(o != null)&#123;do something.....&#125;</span><br></pre></td></tr></table></figure>
 <p>更有趣的是 null 和 undefined 是相等的（==） 如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(null == undefined);//true</span><br></pre></td></tr></table></figure>
 <p>undefiend实际上派生之null值的。上面的例子中操作符 <code>==</code> 总是返回 true,其实它们比较的时候 是转换为相关操作数再比较的，之后的文章会讲到。</p>
-<h4><span id="4boolean类型">4).Boolean类型</span></h4>
-<p>Boolean类型，感觉在开发过程中是用到最多的类型之一了吧。就俩个值：<code>true</code>/ <code>false</code> ,需要注意的是 由于JavaScript 是区别大小写的，TRUE和FALSE, 并不代表布尔值，只是一个简单的标识符。要讲其他类型的值转换为Boolean,只需要调用<code>Boolean(xxx)</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">数据类型                 转换为true的值             转换为false的值</span><br><span class="line"></span><br><span class="line">Boolean                 true                         false</span><br><span class="line"></span><br><span class="line">String                  任何非空字符串                  &apos;&apos;（空字符串）</span><br><span class="line"></span><br><span class="line">Number                  任何非0数字（包括无穷大）         0 和 NaN(非数字类型not a number)</span><br><span class="line"></span><br><span class="line">Object                  任何不为null的对象              null</span><br><span class="line"></span><br><span class="line">Undefined                  无                         undefined</span><br></pre></td></tr></table></figure>
-<h4><span id="5number类型">5).Number类型</span></h4>
-<p>最基本的数据类型就是十进制：<code>var a = 10;</code></p>
+<p>####4).Boolean类型<br>
+Boolean类型，感觉在开发过程中是用到最多的类型之一了吧。就俩个值：<code>true</code>/ <code>false</code> ,需要注意的是 由于JavaScript 是区别大小写的，TRUE和FALSE, 并不代表布尔值，只是一个简单的标识符。要讲其他类型的值转换为Boolean,只需要调用<code>Boolean(xxx)</code></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">数据类型                 转换为true的值             转换为false的值</span><br><span class="line"></span><br><span class="line">Boolean                 true                         false</span><br><span class="line"></span><br><span class="line">String                  任何非空字符串                  &apos;&apos;（空字符串）</span><br><span class="line"></span><br><span class="line">Number                  任何非0数字（包括无穷大）         0 和 NaN(非数字类型not a number)</span><br><span class="line"></span><br><span class="line">Object                  任何不为null的对象              null</span><br><span class="line"></span><br><span class="line">Undefined                  无                         undefined</span><br></pre></td></tr></table></figure>
+<p>####5).Number类型<br>
+最基本的数据类型就是十进制：<code>var a = 10;</code></p>
 <p>八进制：八进制第一位必须是0，然后数字序列（0-7）如果字面值中的数字超出了范围，那么前面的零会忽略，后面的数字被当作十进制去解析：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var oc1 = 070; 八进制的 56  &gt; 7 * （8 * 1）;</span><br><span class="line">var oc2 = 079 ; 无效的八进制 解析为79；</span><br><span class="line">var oc2 = 08 ; 无效的八进制 解析为8；</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var oc1 = 070; 八进制的 56  &gt; 7 * （8 * 1）;</span><br><span class="line">var oc2 = 079 ; 无效的八进制 解析为79；</span><br><span class="line">var oc2 = 08 ; 无效的八进制 解析为8；</span><br></pre></td></tr></table></figure>
 <p><strong>八进制在严格模式下无效，会保错</strong><br>
 十六进制：前俩位是0x,后跟任何十六进制数字（0-9，A-F（可大写也可小写））</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var h = 0xA ; // 十六进制10</span><br><span class="line"></span><br><span class="line">var b = 0x1f; // 十六进制的31</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var h = 0xA ; // 十六进制10</span><br><span class="line"></span><br><span class="line">var b = 0x1f; // 十六进制的31</span><br></pre></td></tr></table></figure>
 <p>Number保存的最小数字是：<code>Number.MIN_VALUE</code> 这个值是5e-324。</p>
 <p>保存的最大值保存在<code>Number.MAX_VALUE</code> 这个值是 1.7976931348621357e+308; 如果在计算过程中超出了数值范围的话，就会返回一个无穷大 <code>Infinity</code>或者 <code>-Infinity</code>,这里注意不管是正无穷大还是负无穷大都不能参与运算。如果想判断一个数字是不是有穷的（最大和最小之间的数字），可以使用 <code>isFinite()</code>函数，如下例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">isFinite(2);//true</span><br><span class="line">isFinite(NaN);//false</span><br></pre></td></tr></table></figure>
-<h4><span id="6nan">6).NaN</span></h4>
-<p>NaN,即非数值（not a  number）,它其实是<strong>一个特殊的数值</strong>，用来表示一个本来要返回数值的操作数未返回数值的情况。<br>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">isFinite(2);//true</span><br><span class="line">isFinite(NaN);//false</span><br></pre></td></tr></table></figure>
+<p>####6).NaN<br>
+NaN,即非数值（not a  number）,它其实是<strong>一个特殊的数值</strong>，用来表示一个本来要返回数值的操作数未返回数值的情况。<br>
 NaN有俩个很非同寻常的特点，<strong>即任何涉及NaN的操作都返回NaN</strong>,<strong>NaN不与任何值相等</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">console.log(NaN/10);//NaN</span><br><span class="line">console.log(NaN==NaN);//false</span><br></pre></td></tr></table></figure>
 <p>其中有个函数用来<strong>判断某个值是不是 不是数字</strong>。</p>
@@ -266,8 +268,8 @@ NaN有俩个很非同寻常的特点，<strong>即任何涉及NaN的操作都返
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parseInt(&apos;0xAF&apos;,16);//175</span><br></pre></td></tr></table></figure>
 <p><code>parseFloat()</code>:这个函数和parseInt函数一样，不过这个函数在第一个小数点是有效的，第二个小数点就无效了。; 该函数始终忽略前导0，所以十六进制始终返回0，并且只解析十进制；还有一个要注意的是:如果要解析的字符串是一个可解析为整数的数（没有小数点，或者小数点后都是零）则返回整数。如下🌰：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">parseFloat(&apos;1234bbbb&apos;);//123</span><br><span class="line">parseFloat(&apos;0xAF&apos;);//0  </span><br><span class="line">parseFloat(&apos;22.5&apos;);//22.5</span><br><span class="line">parseFloat(&apos;22.34.5&apos;);//22.34</span><br><span class="line">parseFloat(&apos;098.5&apos;);// 98.5</span><br><span class="line">parseFloat(&apos;3.125e7&apos;);// 3125000</span><br></pre></td></tr></table></figure>
-<h4><span id="7string类型">7).String类型</span></h4>
-<p>字符串类型，字符串可以使用单引号<code>''</code>或者双引号<code>&quot;&quot;</code>标示。这俩种字符串的解析是一样的，不像PHP字符串的那样。但是以双引号开始，必须以双引号结束，单引也是一样。<br>
+<p>####7).String类型<br>
+字符串类型，字符串可以使用单引号<code>''</code>或者双引号<code>&quot;&quot;</code>标示。这俩种字符串的解析是一样的，不像PHP字符串的那样。但是以双引号开始，必须以双引号结束，单引也是一样。<br>
 字符串中有一些特殊的字符字面量，也叫转义字符。如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">字面量             含义</span><br><span class="line">\n                换行</span><br><span class="line"></span><br><span class="line">\t                制表</span><br><span class="line"></span><br><span class="line">\b                空格</span><br><span class="line"></span><br><span class="line">\r                回车</span><br><span class="line"></span><br><span class="line">\f                进制</span><br><span class="line"></span><br><span class="line">\\                斜杠</span><br><span class="line"></span><br><span class="line">\&apos;                单引号 在字符串中使用</span><br><span class="line"></span><br><span class="line">\&quot;                双引号 在字符串中使用</span><br></pre></td></tr></table></figure>
 <p>如要获得字符串的长度可以使用<strong>length</strong>属性；</p>
@@ -276,7 +278,7 @@ NaN有俩个很非同寻常的特点，<strong>即任何涉及NaN的操作都返
 <p>① toString():每个字符串都有该方法，返回字符串的一个副本。对象、数值、布尔值、字符串都有该方法。但是undefined和null没有。这个方法也可以传一个参数 标示输出 多少进制。</p>
 <p>② String(): 这个方法可以将任何值转换为字符串；转换规则：如果该值有toString方法，则调用；如果是 null 则返回 “null” ; 如果是 undefined 则返回 “undefined”</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(String(10));// &apos;10&apos;</span><br><span class="line">console.log(String(true));// &apos;true&apos;</span><br><span class="line">console.log(String(null));// &apos;null&apos;</span><br><span class="line">var par1;</span><br><span class="line">console.log(String(par1));// &apos;undefined&apos;</span><br></pre></td></tr></table></figure>
-<h4><span id="8object类型">8).Object类型</span></h4>
+<p>####8).Object类型</p>
 <p>在ECMAScript中 对象就是数据和功能的结合体，对象可以通过new操作符跟要创建的对象类型名称来创建<br>
 <code>var o = new Object()</code><br>
 每个对象都有下列属性和方法：</p>
@@ -291,18 +293,14 @@ NaN有俩个很非同寻常的特点，<strong>即任何涉及NaN的操作都返
 如果我们自己重新定义toString/valueOf方法，那么其转换会按照我们的定义来，其中valueOf比toString优先级更高</strong></p>
 <p>例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">function fn() &#123;</span><br><span class="line">    return 20;</span><br><span class="line">&#125;</span><br><span class="line">console.log(fn + 10);</span><br><span class="line">console.log(fn + &apos;hello&apos;);</span><br><span class="line"></span><br><span class="line">fn.toString = function() &#123;</span><br><span class="line">    return 10;</span><br><span class="line">&#125;</span><br><span class="line">console.log(fn + 10);</span><br><span class="line">console.log(fn + &apos;hello&apos;);</span><br><span class="line"></span><br><span class="line">fn.valueOf = function() &#123;</span><br><span class="line">    return 5;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log(fn + 10); </span><br><span class="line">console.log(fn + &apos;hello&apos;);</span><br><span class="line">// 输出结果分别是多少？</span><br><span class="line"></span><br><span class="line">function fn() &#123;</span><br><span class="line">    return 20;</span><br><span class="line">&#125;10</span><br><span class="line"></span><br><span class="line">function fn() &#123;</span><br><span class="line">    return 20;</span><br><span class="line">&#125;hello</span><br><span class="line"></span><br><span class="line">20</span><br><span class="line"></span><br><span class="line">10hello</span><br><span class="line"></span><br><span class="line">15</span><br><span class="line">5hello</span><br></pre></td></tr></table></figure>
-<h1><span id="二-总结">二、总结</span></h1>
-<p>以上就是我们JavaScript的相关基本数据类型，如有不足之处，欢迎指正。下篇文章我们会讲解函数，尽情期待！</p>
+<p>#二、总结<br>
+以上就是我们JavaScript的相关基本数据类型，如有不足之处，欢迎指正。下篇文章我们会讲解函数，尽情期待！</p>
 
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
-                    
-                        <li class="previous">
-                            <a href="/article/手写JavaScript各种骚操作/" data-toggle="tooltip" data-placement="top" title>&larr; Previous Post</a>
-                        </li>
                     
                     
                 </ul>
@@ -316,7 +314,7 @@ NaN有俩个很非同寻常的特点，<strong>即任何涉及NaN的操作都返
                 <br>
                 <!--分享-->
                 
-                    <div class="social-share" data-wechat-qrcode-helper align="center"></div>
+                    <div class="social-share"  data-wechat-qrcode-helper="" align="center"></div>
                     <!--  css & js -->
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
@@ -358,7 +356,7 @@ NaN有俩个很非同寻常的特点，<strong>即任何涉及NaN的操作都返
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">一、数据类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.1.</span> <span class="toc-nav-text">1.前言</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.</span> <span class="toc-nav-text">2.类型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.1.</span> <span class="toc-nav-text">1).typeof操作符</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.2.</span> <span class="toc-nav-text">2).undefined 类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.3.</span> <span class="toc-nav-text">3).Null类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.4.</span> <span class="toc-nav-text">4).Boolean类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.5.</span> <span class="toc-nav-text">5).Number类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.6.</span> <span class="toc-nav-text">6).NaN</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.7.</span> <span class="toc-nav-text">7).String类型</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">1.0.2.8.</span> <span class="toc-nav-text">8).Object类型</span></a></li></ol></li></ol></li></ol><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#undefined"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">二、总结</span></a></li>
+          <ol class="nav">none</ol>
         
         </div>
       </aside>
@@ -378,6 +376,8 @@ NaN有俩个很非同寻常的特点，<strong>即任何涉及NaN的操作都返
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                        
                     </div>
                 </section>
                 
@@ -440,6 +440,24 @@ NaN有俩个很非同寻常的特点，<strong>即任何涉及NaN的操作都返
 </style>
 
 
+<!-- chrome Firefox 中文锚点定位失效-->
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<!-- smooth scroll behavior polyfill  -->
+<script type="text/javascript" src="/js/smoothscroll.js"></script>
+<script>
+        $('#toc').on('click','a',function(a){
+            // var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+            // console.log(window.navigator.userAgent,isChrome)
+                // if(isChrome) {
+                    // console.log(a.currentTarget.outerHTML);
+                    // console.log($(a.currentTarget).attr("href"));
+                    //跳转到指定锚点
+                    // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
+                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                // }
+        })  
+</script>
+
 
     <!-- Footer -->
     <!-- Footer -->
@@ -458,7 +476,7 @@ NaN有俩个很非同寻常的特点，<strong>即任何涉及NaN的操作都返
 
                 
                     <li>
-                        <a target="_blank" href="https://github.com/G1King">
+                        <a target="_blank"  href="https://github.com/G1King">
                             <span class="fa-stack fa-lg">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -472,6 +490,17 @@ NaN有俩个很非同寻常的特点，<strong>即任何涉及NaN的操作都返
                 </ul>
                 <p class="copyright text-muted">
                     Copyright &copy; Leo 2019 
+                    <br>
+                    Theme by <a href="http://beantech.org">BeanTech</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    re-Ported by <a href="http://www.huweihuang.com">胡伟煌</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huweihuang&repo=hexo-theme-huweihuang&type=star&count=true" >
+                    </iframe>
                 </p>
             </div>
         </div>
