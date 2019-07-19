@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          手写JavaScript各种骚操作 - Leo | Blog
+          JavaScript运行时 - Leo | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/手写JavaScript各种骚操作/">
+    <link rel="canonical" href="http://yoursite.com/article/JavaScript运行时/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -89,7 +89,7 @@
                         <div class="tags">
                             
                         </div>
-                        <h1>手写JavaScript各种骚操作</h1>
+                        <h1>JavaScript运行时</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Leo on
@@ -211,60 +211,52 @@
                 post-container">
 
                 <p>#一、前言<br>
-本篇文章是记录各种手写实现<code>JavaScript</code>中的各种操作，如：<code>new</code> <code>apply</code>等，如果有你有更好的方法，记得告诉我哦。<br>
-#二、实现<br>
-#####1. 实现一个new操作符</p>
-<p><code>new</code>的原理，大致分为四点：</p>
-<ol>
-<li>
-<p>创建一个空的对象；</p>
-</li>
-<li>
-<p>让此空对象的<code>__proto__</code>指向构造函数的原型对象<code>Constructor.prototype</code>;</p>
-</li>
-<li>
-<p>绑定<code>this</code>,执行构造函数;</p>
-</li>
-<li>
-<p>返回新对象；</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function _New(func)&#123;</span><br><span class="line">  let _tempObj = &#123;&#125;;</span><br><span class="line">  if(func.prototype !== null)&#123;</span><br><span class="line">    _tempObj.__proto__ = func.prototype;</span><br><span class="line">  &#125;</span><br><span class="line"> let obj = func.apply(_tempObj,Array.prototype.slice.call(arguments,1));</span><br><span class="line"> return (typeof obj === &quot;object&quot;) ? obj : _tempObj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>#####2. 实现一个call方法</p>
-<p><code>call</code>的核心其实是：</p>
-<ol>
-<li>
-<p>将函数设置为对象的属性；</p>
-</li>
-<li>
-<p>执行&amp;删除此函数；</p>
-</li>
-<li>
-<p>指定this到函数并传入给定参数执行函数；</p>
-</li>
-<li>
-<p>如果不传入参数，默认指向为window；</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">简单的</span><br><span class="line"> var obj = &#123;</span><br><span class="line">  a:1,</span><br><span class="line">  b:function()&#123;</span><br><span class="line">  console.log(this.a);</span><br><span class="line">  &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> obj.b();//1</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.ncall = function(contex=window)&#123;</span><br><span class="line">    contex.fn = this;</span><br><span class="line">    let args = [...arguments].slice(1);</span><br><span class="line">    let res = contex.fn(..args);</span><br><span class="line">    delete contex.fn;</span><br><span class="line">    return res;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>apply</code>的实现和<code>call</code>基本一样，只是参数略有不同，如下代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.napply = function(contex = window) &#123;</span><br><span class="line">  contex.fn = this;</span><br><span class="line">  let res ;</span><br><span class="line">  if(arguments[1])&#123;</span><br><span class="line">  //有参数</span><br><span class="line">  res = contex.fn(...arguments[1]);</span><br><span class="line">  &#125;else&#123;</span><br><span class="line">  res = contex.fn();</span><br><span class="line">  &#125;</span><br><span class="line">  delete context.fn;</span><br><span class="line">  return res</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>bind</code>的实现，会创建一个新函数。当这个新函数被调用时，<code>bind()</code> 的第一个参数将作为它运行时的 <code>this</code>，之后的一序列参数将会在传递的实参前传入作为它的参数。<code>bind</code>的实现会借助<code>apply</code>或者<code>call</code>;</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.nbind = function(contex = window) &#123;</span><br><span class="line">if (typeof contex !== &apos;function&apos;)&#123;throw Error(&apos;not a func&apos;)&#125;;</span><br><span class="line">  let fn = this;</span><br><span class="line">  newFunc = function()&#123;&#125;;</span><br><span class="line">  let arg = ...arguments[1];</span><br><span class="line">  let resfunc = function()&#123;</span><br><span class="line">     fn.apply(this instanceof newFunc ? this : contex,args.concat(..arguments));</span><br><span class="line">  &#125;</span><br><span class="line">if(this.prototype)&#123;</span><br><span class="line">  newFunc.prototype = this.prototype;</span><br><span class="line">&#125;</span><br><span class="line">  resfunc.prototype = new newFunc();</span><br><span class="line">  return newFunc;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>bind</code>的实现有一个难点，<code>bind</code> 返回的函数作为构造函数的时候，<code>bind</code> 时指定的 <code>this</code> 值会失效，但传入的参数依然生效.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">var value = 2;</span><br><span class="line"></span><br><span class="line">var foo = &#123;</span><br><span class="line">    value: 1</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function bar(name, age) &#123;</span><br><span class="line">    this.habit = &apos;shopping&apos;;</span><br><span class="line">    console.log(this.value);</span><br><span class="line">    console.log(name);</span><br><span class="line">    console.log(age);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bar.prototype.friend = &apos;kevin&apos;;</span><br><span class="line"></span><br><span class="line">var bindFoo = bar.bind(foo, &apos;daisy&apos;);</span><br><span class="line"></span><br><span class="line">var obj = new bindFoo(&apos;18&apos;);</span><br><span class="line">// undefined</span><br><span class="line">// daisy</span><br><span class="line">// 18</span><br><span class="line">console.log(obj.habit);</span><br><span class="line">console.log(obj.friend);</span><br><span class="line">// shopping</span><br><span class="line">// kevin</span><br></pre></td></tr></table></figure>
-<p>具体<a href="https://segmentfault.com/a/1190000009271416" target="_blank" rel="noopener">参考</a></p>
-<p>#####3. 实现一个instanceof方法</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function ninstanceof(arg1,arg2)&#123;</span><br><span class="line"> let proto = arg1.__proto__;</span><br><span class="line"> let proto2 = arg2.prototype;</span><br><span class="line"> while(true)&#123;</span><br><span class="line"> if(proto == proto2) return true;</span><br><span class="line">   if(proto == null) return false;</span><br><span class="line">   proto = proto.__proto__;//深度继续往上早；</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>#####4. 实现一个js的深copy</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function deepCopy(obj)&#123;</span><br><span class="line">var r ;</span><br><span class="line">  if(typeof obj == &quot;object&quot;)&#123;</span><br><span class="line">      r = obj.constructor == Array ? [] : &#123;&#125;;</span><br><span class="line">      for (let i in obj)&#123;</span><br><span class="line">      r[i] = typeof obj[i] == &quot;object&quot; ? deepCopy(obj[i]) : obj[i];</span><br><span class="line">      &#125;</span><br><span class="line">   </span><br><span class="line">  &#125;else&#123;</span><br><span class="line">  r = obj;</span><br><span class="line">  &#125;</span><br><span class="line">  return r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>#####5. 实现节流和防抖函数</p>
-<p>节流：一段时间内函数只执行一次；</p>
-<p>防抖：如果事件执行时，又触发了事件，那事件会重新执行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//isDebounce 是否防抖</span><br><span class="line">const throttle =  function(fn,delay, isDebounce)&#123;</span><br><span class="line">  let timer ;</span><br><span class="line">  let lastTimer = 0;</span><br><span class="line">   return function()&#123;</span><br><span class="line">     if(isDebounce)&#123;</span><br><span class="line">     //防抖</span><br><span class="line">     if(timer) clearTimeout(timer);</span><br><span class="line">     </span><br><span class="line">    timer = setTimeout(() =&gt; &#123;</span><br><span class="line">  // Todo...</span><br><span class="line">  fn();</span><br><span class="line">&#125;, delay)</span><br><span class="line">     &#125;else&#123;</span><br><span class="line">     //节流</span><br><span class="line">     let now = new Date().getTime();</span><br><span class="line">     if(now - lastTimer &lt; delay)return;</span><br><span class="line">     lastTimer = now;</span><br><span class="line">     fn();</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>#三、总结</p>
-<p>函数柯里化和promise的原理，菜鸡正在学习中，之后会补充到这。已上有什么错误，请及时联系。</p>
+好久没有更新简书了，因为工作忙的原因（主要是懒 - -）。今天给大家分享一篇js运行机制的东西，希望对读者有帮助。<br>
+#二、js单线程<br>
+<code>setTimeout(() =&gt; { console.log('runing') }, 3000);</code><br>
+通常我们会这样理解：这段代码表示1秒后，会执行setTimeout里面那个函数。<br>
+然而，这种解释并不准确， 那应该怎么理解呢？ 我们先来理解JavaScript的远行机制。<br>
+本文最后我会给出JavaScript的运行机制完整图。但在这之前，我想先来给大家解释几个问题。</p>
+<h1><span id="1-javascript为什么是单线程的"><strong>1. JavaScript为什么是单线程的？</strong></span></h1>
+<p>JavaScript设计的初衷是用在浏览器中， 那么，我们来想象一下，如果JavaScript是多线程的话。</p>
+<p>必然可以有两个进程，process1和process2，那么这两个进程可以同时对同一个DOM进行操作。如果这个时候，一个进程要删除这个DOM，另一个进程要编辑这个DOM。启不是矛盾嘛。</p>
+<p>所以，这样应该更好理解，JS为什么是单线程了。</p>
+<h1><span id="2-javascript为什么需要异步"><strong>2. JavaScript为什么需要异步？</strong></span></h1>
+<p>单线程为什么需要异步呢？</p>
+<p>JavaScript如果不存在异步，而是自上而下执行，这样的话，假如上一行解析时间很长，那么下面的代码直接就会被阻塞。这种现象对于用户来说，意味着&quot;卡死&quot;。严重影响用户流失，这样解释好理解吧，所以JavaScript需要异步处理。</p>
+<h1><span id="3-单线程如何实现异步呢"><strong>3. 单线程如何实现异步呢？</strong></span></h1>
+<p>JavaScript竟然需要异步，那么它是如何实现异步的呢？</p>
+<p>JavaScript是通过事件循环（event loop）来实现的，事件循环机制也就是今天要说的JavaScript运行机制。</p>
+<p><strong>（一）同步任务和异步任务</strong></p>
+<p>来看一段代码：<br>
+<code>console.log('Number 1');</code><br>
+<code>setTimeout(() =&gt; { console.log('Number 2'); }, 3000);</code><br>
+<code>console.log('Number 3');</code><br>
+首先这段代码输出结果是啥？</p>
+<p>输出：1 3 2</p>
+<p>其中setTimeout需要延迟一段时间才去执行，这类代码就是异步代码。</p>
+<p>看到这个结果，所以通常我们都这么理解JS的执行原理：</p>
+<p>第一，判断JS是同步还是异步，同步进入主线程，异步则进入event table。</p>
+<p>第二，异步任务在event table中注册函数，当满足触发条件后，被推入event queue(事件队列)。</p>
+<p>第三，同步任务进入主线程后一直执行，直到主线程空闲，才会去event queue中查看是否有可执行的异步任务，如果有就推入主线程。</p>
+<p>按到这个逻辑，上面这段实例代码，是不是就很好理解了。1，3是同步任务进入主要线程，自上而下执行，2是异步任务，满足触发条件后，推入事件队列，等待主线程有空时调用。</p>
+<p><strong>（二）宏任务（macro-task）和微任务（micro-task）</strong></p>
+<p>然而，按照同步和异步任务来理解JS的运行机制似乎并不准确。</p>
+<p>来看一段代码。看看它的输出顺序。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2860368-a8451b9ee1bac5e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="案例一"></p>
+<p>上面这段代码，按同步和异步的理解，输出结果是：2，4，1，3。因为2，4是同步任务，按顺序在主线程自上而下执行，而1，3是异步任务，按顺序在主线程有空后自先而后执行。</p>
+<p>可事实输出并不是这个结果，而是这样的：2，4，3，1。为什么呢？来理解一下宏任务和微任务。</p>
+<p>宠任务：包括整体script代码，setTimeout，setInterval。</p>
+<p>微任务：Promise，process.nextTick。</p>
+<p>来看原理图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2860368-d09f0ca706b0c754.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="JavaScript事件循环"></p>
+<p>嗯，对，这就是JS的运行机制。也就是事件循环。解释一下：</p>
+<p>第一，执行一个宏任务（主线程的同步script代码），过程中如果遇到微任务，就将其放到微任务的事件队列里。</p>
+<p>第二，当前宏任务执行完成后，会查微任务的事件队列，将将全部的微任务依次执行完，再去依次执行宏任务事件队列。</p>
+<p>上面代码中promise的then是一微任务，因此它的执行在setTimeout之前。</p>
+<p>**需要注意的是：**在node环境下，process.nextTick的优先级高于promise。也就是可以简单理解为，在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的promise部分。</p>
+<p>#三、总结<br>
+js在执行事件时，遇到一个宏任务（script(整体代码、setTimeout、setInterval、UI 渲染、 I/O、postMessage、 MessageChannel、setImmediate(Node.js 环境) ），先去执行；检测是否存在微任务，如果有，先放入事件队列，等到宏任务执行完毕后，再去执行，直到所有微任务执行完毕，然后再依次去执行宏任务，就这样不断的宏任务–&gt;微任务–&gt;宏任务的循环。</p>
 
                 
 
@@ -272,13 +264,9 @@
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/JavaScript运行时/" data-toggle="tooltip" data-placement="top" title="JavaScript运行时">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/JavaScript-typeof操作符/" data-toggle="tooltip" data-placement="top" title="JavaScript-typeof操作符">Next Post &rarr;</a>
+                            <a href="/article/手写JavaScript各种骚操作/" data-toggle="tooltip" data-placement="top" title="手写JavaScript各种骚操作">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -334,7 +322,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="nav">none</ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1. JavaScript为什么是单线程的？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. JavaScript为什么需要异步？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">3. 单线程如何实现异步呢？</span></a></li></ol>
         
         </div>
       </aside>
