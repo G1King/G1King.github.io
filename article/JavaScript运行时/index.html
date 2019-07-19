@@ -212,10 +212,10 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>#一、前言<br>
-好久没有更新简书了，因为工作忙的原因（主要是懒 - -）。今天给大家分享一篇js运行机制的东西，希望对读者有帮助。<br>
-#二、js单线程<br>
-<code>setTimeout(() =&gt; { console.log('runing') }, 3000);</code><br>
+                <h1><span id="一-前言">一、前言</span></h1>
+<p>好久没有更新简书了，因为工作忙的原因（主要是懒 - -）。今天给大家分享一篇js运行机制的东西，希望对读者有帮助。</p>
+<h1><span id="二-js单线程">二、js单线程</span></h1>
+<p><code>setTimeout(() =&gt; { console.log('runing') }, 3000);</code><br>
 通常我们会这样理解：这段代码表示1秒后，会执行setTimeout里面那个函数。<br>
 然而，这种解释并不准确， 那应该怎么理解呢？ 我们先来理解JavaScript的远行机制。<br>
 本文最后我会给出JavaScript的运行机制完整图。但在这之前，我想先来给大家解释几个问题。</p>
@@ -256,15 +256,19 @@
 <p>第一，执行一个宏任务（主线程的同步script代码），过程中如果遇到微任务，就将其放到微任务的事件队列里。</p>
 <p>第二，当前宏任务执行完成后，会查微任务的事件队列，将将全部的微任务依次执行完，再去依次执行宏任务事件队列。</p>
 <p>上面代码中promise的then是一微任务，因此它的执行在setTimeout之前。</p>
-<p>**需要注意的是：**在node环境下，process.nextTick的优先级高于promise。也就是可以简单理解为，在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的promise部分。</p>
-<p>#三、总结<br>
-js在执行事件时，遇到一个宏任务（script(整体代码、setTimeout、setInterval、UI 渲染、 I/O、postMessage、 MessageChannel、setImmediate(Node.js 环境) ），先去执行；检测是否存在微任务，如果有，先放入事件队列，等到宏任务执行完毕后，再去执行，直到所有微任务执行完毕，然后再依次去执行宏任务，就这样不断的宏任务–&gt;微任务–&gt;宏任务的循环。</p>
+<p><strong>需要注意的是：</strong> 在node环境下，process.nextTick的优先级高于promise。也就是可以简单理解为，在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的promise部分。</p>
+<h1><span id="三-总结">三、总结</span></h1>
+<p>js在执行事件时，遇到一个宏任务（script(整体代码、setTimeout、setInterval、UI 渲染、 I/O、postMessage、 MessageChannel、setImmediate(Node.js 环境) ），先去执行；检测是否存在微任务，如果有，先放入事件队列，等到宏任务执行完毕后，再去执行，直到所有微任务执行完毕，然后再依次去执行宏任务，就这样不断的宏任务–&gt;微任务–&gt;宏任务的循环。</p>
 
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/article/JavaScript-typeof操作符/" data-toggle="tooltip" data-placement="top" title="JavaScript-typeof操作符">&larr; Previous Post</a>
+                        </li>
                     
                     
                         <li class="next">
@@ -324,7 +328,7 @@ js在执行事件时，遇到一个宏任务（script(整体代码、setTimeout�
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">1. JavaScript为什么是单线程的？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">2. JavaScript为什么需要异步？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">3. 单线程如何实现异步呢？</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">一、前言</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">二、js单线程</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">1. JavaScript为什么是单线程的？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">2. JavaScript为什么需要异步？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">3. 单线程如何实现异步呢？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">三、总结</span></a></li></ol>
         
         </div>
       </aside>
