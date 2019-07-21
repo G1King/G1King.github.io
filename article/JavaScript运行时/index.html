@@ -426,7 +426,8 @@
                     // console.log($(a.currentTarget).attr("href"));
                     //跳转到指定锚点
                     // document.getElementById(a.target.innerText.toLowerCase()).scrollIntoView(true);
-                    document.getElementById($(a.currentTarget).attr("href").replace("#","")).scrollIntoView({behavior: 'smooth' });
+                    console.log(document.getElementById($(a.currentTarget).attr("href").replace("#", "")));
+                    document.getElementById($(a.currentTarget).attr("href").replace("#", "")).scrollIntoView({behavior: 'smooth' });
                 // }
         })  
 </script>
