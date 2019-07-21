@@ -2,13 +2,13 @@
 <html lang="en">
 
 <!-- Head tag -->
-<head><meta name="generator" content="Hexo 3.9.0">
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="keyword" content>
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/ironman-draw.png">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -212,21 +212,21 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1><span id="一-前言">一、前言</span></h1>
+                <h1 id="一-前言">一、前言</h1>
 <p>好久没有更新简书了，因为工作忙的原因（主要是懒 - -）。今天给大家分享一篇js运行机制的东西，希望对读者有帮助。</p>
-<h1><span id="二-js单线程">二、js单线程</span></h1>
+<h1 id="二-js单线程">二、js单线程</h1>
 <p><code>setTimeout(() =&gt; { console.log('runing') }, 3000);</code><br>
 通常我们会这样理解：这段代码表示1秒后，会执行setTimeout里面那个函数。<br>
 然而，这种解释并不准确， 那应该怎么理解呢？ 我们先来理解JavaScript的远行机制。<br>
 本文最后我会给出JavaScript的运行机制完整图。但在这之前，我想先来给大家解释几个问题。</p>
-<h1><span id="1-javascript为什么是单线程的"><strong>1. JavaScript为什么是单线程的？</strong></span></h1>
+<h1 id="1-javascript为什么是单线程的"><strong>1. JavaScript为什么是单线程的？</strong></h1>
 <p>JavaScript设计的初衷是用在浏览器中， 那么，我们来想象一下，如果JavaScript是多线程的话。</p>
 <p>必然可以有两个进程，process1和process2，那么这两个进程可以同时对同一个DOM进行操作。如果这个时候，一个进程要删除这个DOM，另一个进程要编辑这个DOM。启不是矛盾嘛。</p>
 <p>所以，这样应该更好理解，JS为什么是单线程了。</p>
-<h1><span id="2-javascript为什么需要异步"><strong>2. JavaScript为什么需要异步？</strong></span></h1>
+<h1 id="2-javascript为什么需要异步"><strong>2. JavaScript为什么需要异步？</strong></h1>
 <p>单线程为什么需要异步呢？</p>
 <p>JavaScript如果不存在异步，而是自上而下执行，这样的话，假如上一行解析时间很长，那么下面的代码直接就会被阻塞。这种现象对于用户来说，意味着&quot;卡死&quot;。严重影响用户流失，这样解释好理解吧，所以JavaScript需要异步处理。</p>
-<h1><span id="3-单线程如何实现异步呢"><strong>3. 单线程如何实现异步呢？</strong></span></h1>
+<h1 id="3-单线程如何实现异步呢"><strong>3. 单线程如何实现异步呢？</strong></h1>
 <p>JavaScript竟然需要异步，那么它是如何实现异步的呢？</p>
 <p>JavaScript是通过事件循环（event loop）来实现的，事件循环机制也就是今天要说的JavaScript运行机制。</p>
 <p><strong>（一）同步任务和异步任务</strong></p>
@@ -257,7 +257,7 @@
 <p>第二，当前宏任务执行完成后，会查微任务的事件队列，将将全部的微任务依次执行完，再去依次执行宏任务事件队列。</p>
 <p>上面代码中promise的then是一微任务，因此它的执行在setTimeout之前。</p>
 <p><strong>需要注意的是：</strong> 在node环境下，process.nextTick的优先级高于promise。也就是可以简单理解为，在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的promise部分。</p>
-<h1><span id="三-总结">三、总结</span></h1>
+<h1 id="三-总结">三、总结</h1>
 <p>js在执行事件时，遇到一个宏任务（script(整体代码、setTimeout、setInterval、UI 渲染、 I/O、postMessage、 MessageChannel、setImmediate(Node.js 环境) ），先去执行；检测是否存在微任务，如果有，先放入事件队列，等到宏任务执行完毕后，再去执行，直到所有微任务执行完毕，然后再依次去执行宏任务，就这样不断的宏任务–&gt;微任务–&gt;宏任务的循环。</p>
 
                 
@@ -328,7 +328,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">一、前言</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">二、js单线程</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">1. JavaScript为什么是单线程的？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">2. JavaScript为什么需要异步？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">5.</span> <span class="toc-nav-text">3. 单线程如何实现异步呢？</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#null"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">三、总结</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一-前言"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x524D;&#x8A00;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#二-js单线程"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4E8C;&#x3001;js&#x5355;&#x7EBF;&#x7A0B;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1-javascript为什么是单线程的"><span class="toc-nav-number">3.</span> <span class="toc-nav-text"><strong>1. JavaScript&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x5355;&#x7EBF;&#x7A0B;&#x7684;&#xFF1F;</strong></span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2-javascript为什么需要异步"><span class="toc-nav-number">4.</span> <span class="toc-nav-text"><strong>2. JavaScript&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x5F02;&#x6B65;&#xFF1F;</strong></span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#3-单线程如何实现异步呢"><span class="toc-nav-number">5.</span> <span class="toc-nav-text"><strong>3. &#x5355;&#x7EBF;&#x7A0B;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x5F02;&#x6B65;&#x5462;&#xFF1F;</strong></span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#三-总结"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x4E09;&#x3001;&#x603B;&#x7ED3;</span></a></li></ol>
         
         </div>
       </aside>
