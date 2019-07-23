@@ -14,11 +14,11 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <title>
         
-          JavaScript运行时 - Leo | Blog
+          JavaScript-排序 - Leo | Blog
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/article/JavaScript运行时/">
+    <link rel="canonical" href="http://yoursite.com/article/JavaScript-排序/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -88,14 +88,14 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                              <a class="tag" href="/tags/#算法-排序" title="算法-排序">算法-排序</a>
                             
                         </div>
-                        <h1>JavaScript运行时</h1>
+                        <h1>JavaScript-排序</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Leo on
-                            2019-07-19
+                            2019-07-23
                         </span>
                     </div>
                 
@@ -212,67 +212,22 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h1 id="一-前言">一、前言</h1>
-<p>好久没有更新简书了，因为工作忙的原因（主要是懒 - -）。今天给大家分享一篇js运行机制的东西，希望对读者有帮助。</p>
-<h1 id="二-js单线程">二、js单线程</h1>
-<p><code>setTimeout(() =&gt; { console.log('runing') }, 3000);</code><br>
-通常我们会这样理解：这段代码表示1秒后，会执行setTimeout里面那个函数。<br>
-然而，这种解释并不准确， 那应该怎么理解呢？ 我们先来理解JavaScript的远行机制。<br>
-本文最后我会给出JavaScript的运行机制完整图。但在这之前，我想先来给大家解释几个问题。</p>
-<h1 id="1-javascript为什么是单线程的"><strong>1. JavaScript为什么是单线程的？</strong></h1>
-<p>JavaScript设计的初衷是用在浏览器中， 那么，我们来想象一下，如果JavaScript是多线程的话。</p>
-<p>必然可以有两个进程，process1和process2，那么这两个进程可以同时对同一个DOM进行操作。如果这个时候，一个进程要删除这个DOM，另一个进程要编辑这个DOM。启不是矛盾嘛。</p>
-<p>所以，这样应该更好理解，JS为什么是单线程了。</p>
-<h1 id="2-javascript为什么需要异步"><strong>2. JavaScript为什么需要异步？</strong></h1>
-<p>单线程为什么需要异步呢？</p>
-<p>JavaScript如果不存在异步，而是自上而下执行，这样的话，假如上一行解析时间很长，那么下面的代码直接就会被阻塞。这种现象对于用户来说，意味着&quot;卡死&quot;。严重影响用户流失，这样解释好理解吧，所以JavaScript需要异步处理。</p>
-<h1 id="3-单线程如何实现异步呢"><strong>3. 单线程如何实现异步呢？</strong></h1>
-<p>JavaScript竟然需要异步，那么它是如何实现异步的呢？</p>
-<p>JavaScript是通过事件循环（event loop）来实现的，事件循环机制也就是今天要说的JavaScript运行机制。</p>
-<p><strong>（一）同步任务和异步任务</strong></p>
-<p>来看一段代码：<br>
-<code>console.log('Number 1');</code><br>
-<code>setTimeout(() =&gt; { console.log('Number 2'); }, 3000);</code><br>
-<code>console.log('Number 3');</code><br>
-首先这段代码输出结果是啥？</p>
-<p>输出：1 3 2</p>
-<p>其中setTimeout需要延迟一段时间才去执行，这类代码就是异步代码。</p>
-<p>看到这个结果，所以通常我们都这么理解JS的执行原理：</p>
-<p>第一，判断JS是同步还是异步，同步进入主线程，异步则进入event table。</p>
-<p>第二，异步任务在event table中注册函数，当满足触发条件后，被推入event queue(事件队列)。</p>
-<p>第三，同步任务进入主线程后一直执行，直到主线程空闲，才会去event queue中查看是否有可执行的异步任务，如果有就推入主线程。</p>
-<p>按到这个逻辑，上面这段实例代码，是不是就很好理解了。1，3是同步任务进入主要线程，自上而下执行，2是异步任务，满足触发条件后，推入事件队列，等待主线程有空时调用。</p>
-<p><strong>（二）宏任务（macro-task）和微任务（micro-task）</strong></p>
-<p>然而，按照同步和异步任务来理解JS的运行机制似乎并不准确。</p>
-<p>来看一段代码。看看它的输出顺序。</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2860368-a8451b9ee1bac5e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="案例一"></p>
-<p>上面这段代码，按同步和异步的理解，输出结果是：2，4，1，3。因为2，4是同步任务，按顺序在主线程自上而下执行，而1，3是异步任务，按顺序在主线程有空后自先而后执行。</p>
-<p>可事实输出并不是这个结果，而是这样的：2，4，3，1。为什么呢？来理解一下宏任务和微任务。</p>
-<p>宠任务：包括整体script代码，setTimeout，setInterval。</p>
-<p>微任务：Promise，process.nextTick。</p>
-<p>来看原理图：</p>
-<p><img src="https://upload-images.jianshu.io/upload_images/2860368-d09f0ca706b0c754.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="JavaScript事件循环"></p>
-<p>嗯，对，这就是JS的运行机制。也就是事件循环。解释一下：</p>
-<p>第一，执行一个宏任务（主线程的同步script代码），过程中如果遇到微任务，就将其放到微任务的事件队列里。</p>
-<p>第二，当前宏任务执行完成后，会查微任务的事件队列，将将全部的微任务依次执行完，再去依次执行宏任务事件队列。</p>
-<p>上面代码中promise的then是一微任务，因此它的执行在setTimeout之前。</p>
-<p><strong>需要注意的是：</strong> 在node环境下，process.nextTick的优先级高于promise。也就是可以简单理解为，在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的promise部分。</p>
-<h1 id="三-总结">三、总结</h1>
-<p>js在执行事件时，遇到一个宏任务（script(整体代码、setTimeout、setInterval、UI 渲染、 I/O、postMessage、 MessageChannel、setImmediate(Node.js 环境) ），先去执行；检测是否存在微任务，如果有，先放入事件队列，等到宏任务执行完毕后，再去执行，直到所有微任务执行完毕，然后再依次去执行宏任务，就这样不断的宏任务–&gt;微任务–&gt;宏任务的循环。</p>
-
+                <p>#排序<br>
+##1.0 冒泡排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  function sort(arr)&#123;</span><br><span class="line">     const len = arr.length;</span><br><span class="line">     if (len&lt;= 1) &#123;return arr;&#125;</span><br><span class="line">     for (let i = 0; i &lt;len - 1 ; i++) &#123;</span><br><span class="line">       let hasChange = false;</span><br><span class="line">       for (let j = 0; j &lt; len-1-i; j++) &#123;</span><br><span class="line">         if (arr[j] &gt; arr[j+1]) &#123;</span><br><span class="line">         const temp = arr[j];</span><br><span class="line">         arr[j] = arr[j+1];</span><br><span class="line">         arr[j+1] = temp;</span><br><span class="line">         hasChange = true;</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if (!hasChange) &#123;break;&#125;</span><br><span class="line">     &#125;</span><br><span class="line">     console.log(arr);</span><br><span class="line">  &#125;</span><br><span class="line"> console.log (sort([1,33,55,0,12,33,77]));</span><br><span class="line">0: 0</span><br><span class="line">1: 1</span><br><span class="line">2: 12</span><br><span class="line">3: 33</span><br><span class="line">4: 33</span><br><span class="line">5: 55</span><br><span class="line">6: 77</span><br></pre></td></tr></table></figure>
+<p>##2.0 快速排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function quickSort(arr)&#123;</span><br><span class="line">  let left = [];</span><br><span class="line">  let right = [];</span><br><span class="line"> var base = arr[arr.length - 1];</span><br><span class="line"> if (arr.length &lt;= 1) &#123;return arr&#125;;</span><br><span class="line"> for (let i = 0; i &lt; arr.length-1; i++) &#123;</span><br><span class="line">   if (arr[i] &lt; base) &#123;</span><br><span class="line">    left.push(arr[i]);</span><br><span class="line">   &#125;else&#123;</span><br><span class="line">    right.push(arr[i]);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> return [...quickSort(left),...[base],...quickSort(right)];</span><br><span class="line">&#125;</span><br><span class="line"> console.log (quickSort([1,33,55,0,12,33,77]));//[0, 1, 12, 33, 33, 55, 77]</span><br></pre></td></tr></table></figure>
+<p>##3.0 选择排序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> function selectSort(arr)&#123;</span><br><span class="line">const len = arr.length;</span><br><span class="line">  let minIndex, temp;</span><br><span class="line">  for (let i = 0; i &lt; len-1; i++) &#123;</span><br><span class="line">    minIndex = i;</span><br><span class="line">    for (let j = i+1; j&lt; len; j++) &#123;</span><br><span class="line">        if (arr[j] &lt; arr[minIndex]) &#123;</span><br><span class="line">          minIndex = j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    temp = arr[i];</span><br><span class="line">    arr[i] = arr[minIndex];</span><br><span class="line">    arr[minIndex] = temp;</span><br><span class="line">  &#125;</span><br><span class="line">console.log(arr);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
                 
 
                 <hr>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/JavaScript-typeof操作符/" data-toggle="tooltip" data-placement="top" title="JavaScript-typeof操作符">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/手写JavaScript各种骚操作/" data-toggle="tooltip" data-placement="top" title="手写JavaScript各种骚操作">Next Post &rarr;</a>
+                            <a href="/article/JavaScript-typeof操作符/" data-toggle="tooltip" data-placement="top" title="JavaScript-typeof操作符">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -328,7 +283,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#一-前言"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x524D;&#x8A00;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#二-js单线程"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x4E8C;&#x3001;js&#x5355;&#x7EBF;&#x7A0B;</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#1-javascript为什么是单线程的"><span class="toc-nav-number">3.</span> <span class="toc-nav-text"><strong>1. JavaScript&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x5355;&#x7EBF;&#x7A0B;&#x7684;&#xFF1F;</strong></span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#2-javascript为什么需要异步"><span class="toc-nav-number">4.</span> <span class="toc-nav-text"><strong>2. JavaScript&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;&#x5F02;&#x6B65;&#xFF1F;</strong></span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#3-单线程如何实现异步呢"><span class="toc-nav-number">5.</span> <span class="toc-nav-text"><strong>3. &#x5355;&#x7EBF;&#x7A0B;&#x5982;&#x4F55;&#x5B9E;&#x73B0;&#x5F02;&#x6B65;&#x5462;&#xFF1F;</strong></span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#三-总结"><span class="toc-nav-number">6.</span> <span class="toc-nav-text">&#x4E09;&#x3001;&#x603B;&#x7ED3;</span></a></li></ol>
+          <ol class="nav">none</ol>
         
         </div>
       </aside>
@@ -348,7 +303,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
+                          <a class="tag" href="/tags/#算法-排序" title="算法-排序">算法-排序</a>
                         
                     </div>
                 </section>

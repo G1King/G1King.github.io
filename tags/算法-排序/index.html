@@ -18,7 +18,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://yoursite.com/">
+    <link rel="canonical" href="http://yoursite.com/tags/算法-排序/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -71,8 +71,8 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/header_img/home.jpg') 
-            /*config*/
+            background-image: url('/img/header_img/archives-widget.jpg')
+            /*page*/
         
     }
     
@@ -206,169 +206,111 @@
                 post-container
             ">
             
-                <!-- Main Content -->
-
-
-<div class="post-preview">
-
-    <a href="/article/手写JavaScript各种骚操作/">
-        <h2 class="post-title">
+                
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 archive">
+            <!-- 归档列表 -->
             
-                <i class="fa fa-thumb-tack" style="color:#F4711F" ></i>
-                <!-- <i class="fa fa-thumb-tack" style="color:#F89E8C" ></i> -->
-                <!-- <i class="fa fa-thumb-tack" style="color:#1CB7ED" ></i> -->
-                <font color=#F4711F>置顶</font>
-                <!-- <font color=#F89E8C>置顶</font>  -->
-                <!-- <font color=#1CB7ED>置顶</font>  -->
-                                 
-            手写JavaScript各种骚操作
-        </h2>
-        <h3 class="post-subtitle">
             
-        </h3>
-        <div class="post-content-preview">
-            一、前言
-本篇文章是记录各种手写实现JavaScript中的各种操作，如：new apply等，如果有你有更好的方法，记得告诉我哦。
-二、实现
-1. 实现一个new操作符
-new的原理，大致分为四点：
+
+             <!-- 归档列表 -->
+
+            
+            <div class="one-tag-list">
+                <span class="fa fa-calendar-times-o listing-seperator" id="2019">
+                    <span class="tag-text">2019</span>
+                </span>
+                <ul>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <li >
+                    07-23
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <a href="/article/JavaScript-排序/" style="color: #0085a1">
+                        <span>
+                            JavaScript-排序
+                        </span>
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </li>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <li >
+                    07-19
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <a href="/article/JavaScript-typeof操作符/" style="color: #0085a1">
+                        <span>
+                            JavaScript-typeof操作符
+                        </span>
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </li>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <li >
+                    07-19
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <a href="/article/JavaScript运行时/" style="color: #0085a1">
+                        <span>
+                            JavaScript运行时
+                        </span>
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </li>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <li >
+                    07-19
+                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                    <a href="/article/手写JavaScript各种骚操作/" style="color: #0085a1">
+                        <span>
+                            手写JavaScript各种骚操作
+                        </span>
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </li>
+                
+                </ul>
+            </div>
+            
 
 
-创建一个空的对象；
-
-
-让此空对象的__proto__指向构造函数的原型对象Constructor.prototype;
-
-
-绑定this,执行构造函数;
-
-
-返回新对象；
-
-
-12345......
         </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Leo on
-            2019-07-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
-            
-        </div>
-    
-
+    </div>
 </div>
-<hr>
 
-<div class="post-preview">
+<style type="text/css">
 
-    <a href="/article/JavaScript-排序/">
-        <h2 class="post-title">
-                                 
-            JavaScript-排序
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            #排序
-##1.0 冒泡排序
-12345678910111213141516171819202122232425  function sort(arr)&#123;     const len = arr.length;     if (len&lt;= 1) &#123;return arr;&#125;     for (let i = 0; i &lt;len - 1 ; i++) &......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Leo on
-            2019-07-23
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#算法-排序" title="算法-排序">算法-排序</a>
-            
-        </div>
-    
+   @media (min-width: 992px) {
+   .archive {
+       margin-left: 8.33333333%;
+       padding-right: 26.333333%;
+   }
+}
+</style>
 
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/JavaScript-typeof操作符/">
-        <h2 class="post-title">
-                                 
-            JavaScript-typeof操作符
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、数据类型
-1.前言
-最近会把读《Javascript高级程序设计(第三版)》 密码:2vp3 这本书的一些要点，一一分享给大家，这是第一篇基本数据类型。我已经把此书的网盘链接分享出来了，有兴趣的可以看下，JavaScript进阶必看。
-2.类型
-ECMAScript有5种基本数据类型：undefined、Null、Boolean、Number、String ; 一种复杂数据类型 Obje......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Leo on
-            2019-07-19
-        </p>
-        <div class="tags">
-            
-        </div>
-    
-
-</div>
-<hr>
-
-<div class="post-preview">
-
-    <a href="/article/JavaScript运行时/">
-        <h2 class="post-title">
-                                 
-            JavaScript运行时
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            一、前言
-好久没有更新简书了，因为工作忙的原因（主要是懒 - -）。今天给大家分享一篇js运行机制的东西，希望对读者有帮助。
-二、js单线程
-setTimeout(() =&gt; { console.log('runing') }, 3000);
-通常我们会这样理解：这段代码表示1秒后，会执行setTimeout里面那个函数。
-然而，这种解释并不准确， 那应该怎么理解呢？ 我们先来理解Ja......
-        </div>
-    </a>
-    
-        <p class="post-meta" style="margin: 10px 0;">
-            Posted by Leo on
-            2019-07-19
-        </p>
-        <div class="tags">
-            
-              <a href="/tags/#JavaScript" title="JavaScript">JavaScript</a>
-            
-        </div>
-    
-
-</div>
-<hr>
-
-
-
-<!-- Pager -->
-
-<ul class="pager">
-    
-    
-</ul>
-
+<style type="text/css">
+   @media (min-width: 1200px){
+   .archive {
+   margin-left: 16.66666667%;
+   padding-right: 16.666667%;
+   }
+}
+</style>
 
 
                 <br>
