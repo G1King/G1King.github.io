@@ -149,14 +149,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -212,12 +212,12 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>#排序<br>
-##1.0 冒泡排序</p>
+                <h1 id="排序">排序</h1>
+<h2 id="10-冒泡排序">1.0 冒泡排序</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">  function sort(arr)&#123;</span><br><span class="line">     const len = arr.length;</span><br><span class="line">     if (len&lt;= 1) &#123;return arr;&#125;</span><br><span class="line">     for (let i = 0; i &lt;len - 1 ; i++) &#123;</span><br><span class="line">       let hasChange = false;</span><br><span class="line">       for (let j = 0; j &lt; len-1-i; j++) &#123;</span><br><span class="line">         if (arr[j] &gt; arr[j+1]) &#123;</span><br><span class="line">         const temp = arr[j];</span><br><span class="line">         arr[j] = arr[j+1];</span><br><span class="line">         arr[j+1] = temp;</span><br><span class="line">         hasChange = true;</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       if (!hasChange) &#123;break;&#125;</span><br><span class="line">     &#125;</span><br><span class="line">     console.log(arr);</span><br><span class="line">  &#125;</span><br><span class="line"> console.log (sort([1,33,55,0,12,33,77]));</span><br><span class="line">0: 0</span><br><span class="line">1: 1</span><br><span class="line">2: 12</span><br><span class="line">3: 33</span><br><span class="line">4: 33</span><br><span class="line">5: 55</span><br><span class="line">6: 77</span><br></pre></td></tr></table></figure>
-<p>##2.0 快速排序</p>
+<h2 id="20-快速排序">2.0 快速排序</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function quickSort(arr)&#123;</span><br><span class="line">  let left = [];</span><br><span class="line">  let right = [];</span><br><span class="line"> var base = arr[arr.length - 1];</span><br><span class="line"> if (arr.length &lt;= 1) &#123;return arr&#125;;</span><br><span class="line"> for (let i = 0; i &lt; arr.length-1; i++) &#123;</span><br><span class="line">   if (arr[i] &lt; base) &#123;</span><br><span class="line">    left.push(arr[i]);</span><br><span class="line">   &#125;else&#123;</span><br><span class="line">    right.push(arr[i]);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"> return [...quickSort(left),...[base],...quickSort(right)];</span><br><span class="line">&#125;</span><br><span class="line"> console.log (quickSort([1,33,55,0,12,33,77]));//[0, 1, 12, 33, 33, 55, 77]</span><br></pre></td></tr></table></figure>
-<p>##3.0 选择排序</p>
+<h2 id="30-选择排序">3.0 选择排序</h2>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> function selectSort(arr)&#123;</span><br><span class="line">const len = arr.length;</span><br><span class="line">  let minIndex, temp;</span><br><span class="line">  for (let i = 0; i &lt; len-1; i++) &#123;</span><br><span class="line">    minIndex = i;</span><br><span class="line">    for (let j = i+1; j&lt; len; j++) &#123;</span><br><span class="line">        if (arr[j] &lt; arr[minIndex]) &#123;</span><br><span class="line">          minIndex = j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    temp = arr[i];</span><br><span class="line">    arr[i] = arr[minIndex];</span><br><span class="line">    arr[minIndex] = temp;</span><br><span class="line">  &#125;</span><br><span class="line">console.log(arr);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
                 
 
@@ -287,7 +287,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="nav">none</ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#排序"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x6392;&#x5E8F;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#10-冒泡排序"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">1.0 &#x5192;&#x6CE1;&#x6392;&#x5E8F;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#20-快速排序"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">2.0 &#x5FEB;&#x901F;&#x6392;&#x5E8F;</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#30-选择排序"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">3.0 &#x9009;&#x62E9;&#x6392;&#x5E8F;</span></a></li></ol></li></ol>
         
         </div>
       </aside>
